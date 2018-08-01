@@ -14,7 +14,7 @@ var handler = StripeCheckout.configure({
       stripeToken: token.id,
       amount: purchaseData.amount
     }
-    fetch("https://gal-stripe.herokuapp.com/", {
+    fetch("https://gal-stripe.herokuapp.com/payment", {
       method: "POST",
       body: JSON.stringify(paymentObj),
       headers: {
