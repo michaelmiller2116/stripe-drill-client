@@ -14,7 +14,7 @@ var handler = StripeCheckout.configure({
       stripeToken: token.id,
       amount: purchaseData.amount
     }
-    fetch('http://localhost:5000/payment', {
+    fetch("https://gal-stripe.herokuapp.com/", {
       method: "POST",
       body: JSON.stringify(paymentObj),
       headers: {
@@ -23,16 +23,16 @@ var handler = StripeCheckout.configure({
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res)
+        console.log(res);
         if (res.failure_code) {
-          displayNewError(new Error("there was a problem processing your payment"))
+          displayNewError(new Error("there was a problem processing your payment"));
         } else {
-          const message = `Your card was charged $${res.amount / 100}`
-          const statusElement = document.querySelector("#payment-status")
-          statusElement.innerHTML = message
+          const message = `Your card was charged $${res.amount / 100}`;
+          const statusElement = document.querySelector("#payment-status");
+          statusElement.innerHTML = message;
         }
       })
-      .catch(displayNewError)
+      .catch(displayNewError);
   }
 })
 
